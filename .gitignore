@@ -1,0 +1,14 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+.idea/
+
+VideoWriter/*
+!VideoWriter/cmake-build-debug/VideoWriter
+
+model-weights/
+FaceDetection/
+data/
+yoloface/
+inputVideos/
+__pycache__/
