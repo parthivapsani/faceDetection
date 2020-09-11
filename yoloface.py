@@ -39,6 +39,8 @@ parser.add_argument('--live', '-l', action='store_true',
                     help='changing source of the video to a webcam')
 parser.add_argument('--get-help', '-gh', action='store_true',
                     help='argument used to bring up argument descriptors')
+parser.add_argument('--demo', '-d', action='store_true',
+                    help='flag for demo run (this deletes unnecessary folders and files)')
 args = parser.parse_args()
 
 #####################################################################
@@ -62,6 +64,7 @@ if args.get_help:
     print("\n'--video' or '-v' is used to get the relative file path for the input video")
     print("'--live' or '-l' is used to set the video input to the current device's webcam")
     print("Only one of these two arguments is required for program operation, if both are provided, live recording will take precedence\n")
+    print("'--demo' or '-d' is used for providing a demo (this changes folder and file construction behavior)")
     sys.exit(0)
 elif not (args.live and args.video):  # Default to live demo if no video source argument is provided
     args.live = True
@@ -449,6 +452,11 @@ def main():
     print("\n{}\n".format(' '.join(arguments)))
     if args.live:
         print("Thanks for viewing this project demo!\n")
+    if args.demo:  # Delete unnecessary folders and files
+        deleteDirectories = [args.output_dir, processDirPath, preProcessDirPath, preProcessDirPath2]
+        for directory in deleteDirectories:
+            print(directory)
+            shutil.rmtree(directory)
 
 
 if __name__ == '__main__':
